@@ -1,10 +1,11 @@
 services:
-  - type: web
+  - type: static
     name: demarche-francaise
-    env: static
     buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    publishDir: dist
+    staticPublishPath: /
+    headers:
+      /**:
+        - key: Cache-Control
+          value: no-store
+    spa: true
