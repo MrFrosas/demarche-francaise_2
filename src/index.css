@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.7.2/dist/fonts/Marianne-Light.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.7.2/dist/fonts/Marianne-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.7.2/dist/fonts/Marianne-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.7.2/dist/fonts/Marianne-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marianne';
+  src: url('https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.7.2/dist/fonts/Marianne-Bold.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.7.2/dist/fonts/Marianne-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #3A3A3A;
+    --card: #FFFFFF;
+    --card-foreground: #3A3A3A;
+    --popover: #FFFFFF;
+    --popover-foreground: #3A3A3A;
+    --primary: #000091;
+    --primary-foreground: #FFFFFF;
+    --secondary: #E1000F;
+    --secondary-foreground: #FFFFFF;
+    --muted: #F5F5FE;
+    --muted-foreground: #666666;
+    --accent: #F5F5FE;
+    --accent-foreground: #000091;
+    --destructive: #E1000F;
+    --destructive-foreground: #FFFFFF;
+    --border: #DDDDDD;
+    --input: #DDDDDD;
+    --ring: #000091;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-marianne text-[16px] min-h-screen antialiased;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    @apply min-h-screen flex flex-col;
+  }
+
+  /* Animation classes */
+  .animate-in {
+    animation-duration: 200ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation-name: fadeIn;
+  }
+
+  .slide-in-from-top-5 {
+    transform: translateY(-1.25rem);
+    animation-name: slideInFromTop;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInFromTop {
+    from {
+      transform: translateY(-1.25rem);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  /* Classes DSFR */
+  .fr-text-title-blue {
+    @apply text-france-blue font-bold;
+  }
+
+  .fr-text-mention {
+    @apply text-france-gray-mention text-fr-text-sm;
+  }
+
+  .fr-link {
+    @apply text-france-blue hover:text-france-blue-hover focus:outline-none focus:ring-2 focus:ring-france-blue focus:ring-offset-2 transition-colors duration-200;
+  }
+
+  .fr-btn {
+    @apply inline-flex items-center justify-center px-fr-4v py-fr-2v rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200;
+  }
+
+  .fr-btn--primary {
+    @apply bg-france-blue text-white hover:bg-france-blue-hover focus:ring-france-blue;
+  }
+
+  .fr-btn--secondary {
+    @apply bg-france-white border-2 border-france-blue text-france-blue hover:bg-france-gray hover:border-france-blue-hover focus:ring-france-blue;
+  }
+
+  .fr-card {
+    @apply bg-white rounded-lg shadow-fr-md hover:shadow-fr-lg transition-shadow duration-200;
+  }
+
+  .fr-input {
+    @apply w-full px-fr-4v py-fr-2v border border-france-gray-medium rounded-md focus:outline-none focus:ring-2 focus:ring-france-blue focus:border-france-blue;
+  }
+
+  .fr-alert {
+    @apply p-fr-4v rounded-md border-l-4;
+  }
+
+  .fr-alert--info {
+    @apply bg-france-gray border-france-info;
+  }
+
+  .fr-alert--success {
+    @apply bg-france-gray border-france-success;
+  }
+
+  .fr-alert--warning {
+    @apply bg-france-gray border-france-warning;
+  }
+
+  .fr-alert--error {
+    @apply bg-france-gray border-france-error;
+  }
+}
