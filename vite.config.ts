@@ -1,36 +1,34 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { componentTagger } from "lovable-tagger";
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
+  plugins: [react()],
   server: {
-    host: "::",
     port: 8080,
-    headers: {
-      'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'SAMEORIGIN',
-      'Access-Control-Allow-Origin': '*',
-      'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
-    },
+    host: true
   },
-  plugins: [
-    react(),
-    mode === 'development' && componentTagger(),
-  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
-    sourcemap: false,
+    outDir: 'dist',
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-        },
-      },
-    },
+        manualChunks: undefined
+      }
+    }
   },
-}));
+  // Configuration spécifique pour le routage côté client
+  preview: {
+    port: 8080,
+    host: true,
+    strictPort: true,
+    headers: {
+      "Cache-Control": "no-store"
+    }
+  }
+});
